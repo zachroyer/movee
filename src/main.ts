@@ -4,6 +4,9 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import { setupCounter } from './counter.ts'
 
+
+
+
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 <section id="center">
   <div class="hero">
@@ -16,6 +19,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <p>Edit <code>src/main.ts</code> and save to test <code>HMR</code></p>
   </div>
   <button id="counter" type="button" class="counter"></button>
+  <label for="lbdata"> Upload your Letterboxd data ZIP:</label>
+  <input type="file" id="lbdata" accept=".zip"></input>
 </section>
 
 <div class="ticks"></div>
@@ -57,4 +62,14 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 <section id="spacer"></section>
 `
 
+const fileInput = document.getElementById('lbdata') as HTMLInputElement;
+if (fileInput) {
+  fileInput.addEventListener("change", () => { ;
+    const fileList = fileInput.files;
+    if (fileList) {
+      const file = fileList[0];
+      console.log(`${file.name} file obtained by browser`);
+    }
+  })
+}
 setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
